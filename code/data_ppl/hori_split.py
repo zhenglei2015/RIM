@@ -60,7 +60,6 @@ def split_tabular(tabular_file,
     with open(tabular_file) as f:
         for line in tqdm(f):
             line_split = line[:-1].split(',')
-            print(line_split)
             ts = line_split[timestamp_pos]
             if is_timestamp_flag:
                 ts = int(ts)

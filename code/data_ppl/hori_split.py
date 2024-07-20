@@ -5,6 +5,8 @@ import datetime
 import time
 import sys
 import logging
+import copy
+
 logging.basicConfig(level=logging.INFO)
 import configparser
 from tqdm import tqdm
@@ -138,7 +140,8 @@ def split_tabular(tabular_file,
         
         logging.info('generate neg samples for target train...')
         cnt = 0
-        for line in tqdm(target_train_lines):
+        target_train_lines_traverse = copy.deepcopy(target_train_lines)
+        for line in tqdm(target_train_lines_traverse):
             line_split = line[:-1].split(',')
             # sample from history or random sample
             for _ in range(neg_sample_num):
@@ -161,7 +164,8 @@ def split_tabular(tabular_file,
 
         logging.info('generate neg samples for target test...')
         cnt = 0
-        for line in tqdm(target_test_lines):
+        target_test_lines_traverse = copy.deepcopy(target_test_lines)
+        for line in tqdm(target_test_lines_traverse):
             line_split = line[:-1].split(',')
             # sample from history or random sample
             for _ in range(neg_sample_num):

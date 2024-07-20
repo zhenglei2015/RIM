@@ -240,6 +240,7 @@ if __name__ == "__main__":
     sampling(cnf.get(dataset, 'target_train_file'), 
              cnf.get(dataset, 'target_train_sample_file'), 
              rate=cnf.getfloat(dataset, 'target_sample_rate'))
+    
     sampling(cnf.get(dataset, 'target_test_file'), 
              cnf.get(dataset, 'target_test_sample_file'), 
              rate=cnf.getfloat(dataset, 'target_sample_rate'))

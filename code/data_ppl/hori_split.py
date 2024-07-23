@@ -120,8 +120,11 @@ def split_tabular(tabular_file,
 
     # (optinal) phase 3: negative sampling for target files and search pool file
     search_pool_lines_neg = []
-    target_train_lines_dump = target_train_lines
-    target_test_lines_dump = target_test_lines
+    # target_train_lines_dump = target_train_lines
+    # target_test_lines_dump = target_test_lines
+    target_train_lines_dump = []
+    target_test_lines_dump = []
+
 
     if neg_sample_flag:
         logging.info('phase 3: negative sampling for target and search pool files...')
@@ -142,6 +145,7 @@ def split_tabular(tabular_file,
         cnt = 0
         target_train_lines_traverse = copy.deepcopy(target_train_lines)
         for line in tqdm(target_train_lines_traverse):
+            target_train_lines_dump.append(line)
             line_split = line[:-1].split(',')
             # sample from history or random sample
             for _ in range(neg_sample_num):
@@ -166,6 +170,7 @@ def split_tabular(tabular_file,
         cnt = 0
         target_test_lines_traverse = copy.deepcopy(target_test_lines)
         for line in tqdm(target_test_lines_traverse):
+            target_test_lines_dump.append(line)
             line_split = line[:-1].split(',')
             # sample from history or random sample
             for _ in range(neg_sample_num):
